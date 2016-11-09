@@ -1,6 +1,7 @@
 "use strict"
 
 const fs = require('fs')
+const queryString = require('querystring')
 
 function login(response) {
     console.log('Request handler "Page 1" was called')
@@ -14,11 +15,11 @@ function login(response) {
     })
 }
 
-function auth(response) {
+function auth(response, data) {
     console.log('Request handler "Page 2" was called')
     response.statusCode = 200
-    response.setHeader("Content-Type", "text/html")
-    response.write("Success/Fail")
+    response.setHeader("Content-Type", "text/json")
+    response.write(JSON.stringify(queryString.parse(data)))
     response.end()
 }
 
