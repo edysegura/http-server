@@ -2,11 +2,11 @@
 
 const fs = require('fs')
 
-function page1(response) {
+function login(response) {
     console.log('Request handler "Page 1" was called')
 
     fs.readFile("./index.html", "utf-8", function onReturn(error, data) {
-        if(error) throw error
+        if (error) throw error
         response.statusCode = 200
         response.setHeader("Content-Type", "text/html")
         response.write(data)
@@ -14,14 +14,16 @@ function page1(response) {
     })
 }
 
-function page2(response) {
+function auth(response) {
     console.log('Request handler "Page 2" was called')
-    response.write("Page 2")
+    response.statusCode = 200
+    response.setHeader("Content-Type", "text/html")
+    response.write("Success/Fail")
     response.end()
 }
 
 //Public API
 module.exports = {
-    'page1': page1,
-    'page2': page2
+    'login': login,
+    'auth': auth
 }
