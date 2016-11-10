@@ -4,7 +4,7 @@ const fs = require('fs')
 const queryString = require('querystring')
 
 function login(response) {
-    console.log('Request handler "Page 1" was called')
+    console.log('Request handler "Login" was called')
 
     fs.readFile("./index.html", "utf-8", function onReturn(error, data) {
         if (error) throw error
@@ -16,7 +16,7 @@ function login(response) {
 }
 
 function auth(response, data) {
-    console.log('Request handler "Page 2" was called')
+    console.log('Request handler "Auth" was called')
     response.statusCode = 200
     response.setHeader("Content-Type", "text/json")
     response.write(JSON.stringify(queryString.parse(data)))
